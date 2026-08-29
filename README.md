@@ -1,20 +1,59 @@
 <div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
+
+# ✨ AuraFit
+
+### Your Closet's Best Friend
+
+**Buy Less. Style More.**
+
+<img src="https://github.com/user-attachments/assets/b849ba5c-dc4b-4ead-9405-130441b2e66c" alt="AuraFit" width="1200"/>
+
 </div>
 
-# Run and deploy your AI Studio app
+---
 
-This contains everything you need to run your app locally.
+## 👗 About AuraFit
 
-View your app in AI Studio: https://ai.studio/apps/9c284dcc-b691-48ac-a0b8-e8af85a07fe8
+AuraFit is an AI-powered digital wardrobe and personal stylist designed to help users create personalized outfits from the clothes they already own.
 
-## Run Locally
+Instead of asking **"What should I wear today?"**, AuraFit understands your wardrobe and helps you discover new combinations based on your occasion and personal style.
 
-**Prerequisites:**  Node.js
+> **You don't need more clothes. You need more ways to wear them.**
 
+---
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## 🚀 Live Demo
+
+👉 **[Try AuraFit](https://aurafitofficial.vercel.app/)**
+
+---
+
+## ✨ Key Features
+
+- 👕 **AI Digital Wardrobe** — Upload and organize your clothes digitally.
+- 🤖 **AI Clothing Recognition** — AI identifies clothing categories, colors, patterns and styles.
+- ✨ **AI Outfit Generator** — Creates complete outfit combinations from your existing wardrobe.
+- 🎯 **Occasion-Based Styling** — Get recommendations for college, parties, dates, interviews, weddings and more.
+- 🧠 **Personalized Recommendations** — Recommendations adapt to your preferences and feedback.
+- 💡 **Why This Outfit?** — Understand why an outfit was recommended.
+- ❤️ **Save & Rate Looks** — Save your favorite outfits and provide feedback.
+- 🌙 **Light & Dark Mode** — Choose the experience you prefer.
+
+---
+
+## 🧠 How It Works
+
+```text
+Upload Your Clothes
+        ↓
+AI Identifies Clothing
+        ↓
+Digital Wardrobe
+        ↓
+Choose Occasion & Style
+        ↓
+AI Generates Outfits
+        ↓
+Save / Rate / Give Feedback
+        ↓
+Better Future Recommendations
