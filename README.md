@@ -6,7 +6,7 @@
 
 **Buy Less. Style More.**
 
-<img src="https://github.com/user-attachments/assets/b849ba5c-dc4b-4ead-9405-130441b2e66c" alt="AuraFit" width="1200"/>
+<img src="Aurafit dp.png" alt="AuraFit" width="1200"/>
 
 </div>
 
