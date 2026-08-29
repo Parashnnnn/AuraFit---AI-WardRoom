@@ -1,0 +1,96 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 1. Global Safety Net: Default-deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Common Security Helper Functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // Top-Level User Profile: users/{uid}
+    match /users/{uid} {
+      // FIXED: Restrict read strictly to the owner. Prevent cross-user PII and measurement scraping.
+      allow get: if isOwner(uid);
+      allow list: if false; // Users cannot list other users
+
+      allow create: if isOwner(uid)
+        && (incoming().name is string && incoming().name.size() <= 100)
+        && (incoming().email is string && incoming().email.size() <= 150);
+
+      allow update: if isOwner(uid)
+        && (!('name' in incoming()) || (incoming().name is string && incoming().name.size() <= 100))
+        && (!('email' in incoming()) || (incoming().email is string && incoming().email.size() <= 150))
+        && (!('bio' in incoming()) || (incoming().bio is string && incoming().bio.size() <= 500))
+        && (!('height' in incoming()) || (incoming().height is string && incoming().height.size() <= 50))
+        && (!('gender' in incoming()) || (incoming().gender is string && incoming().gender.size() <= 50))
+        && (!('clothingSize' in incoming()) || (incoming().clothingSize is string && incoming().clothingSize.size() <= 50))
+        && (!('preferredFit' in incoming()) || (incoming().preferredFit is string && incoming().preferredFit.size() <= 50));
+
+      allow delete: if isOwner(uid);
+
+      // User Wardrobe: users/{uid}/wardrobe/{itemId}
+      match /wardrobe/{itemId} {
+        allow get, list: if isOwner(uid);
+        allow create: if isOwner(uid)
+          && (incoming().name is string && incoming().name.size() <= 150)
+          && (incoming().category is string && incoming().category.size() <= 50)
+          && (incoming().color is string && incoming().color.size() <= 50)
+          && (!('image' in incoming()) || (incoming().image is string && incoming().image.size() <= 10485760))
+          && (!('notes' in incoming()) || (incoming().notes is string && incoming().notes.size() <= 1000));
+
+        allow update: if isOwner(uid)
+          && (!('name' in incoming()) || (incoming().name is string && incoming().name.size() <= 150))
+          && (!('category' in incoming()) || (incoming().category is string && incoming().category.size() <= 50))
+          && (!('color' in incoming()) || (incoming().color is string && incoming().color.size() <= 50))
+          && (!('image' in incoming()) || (incoming().image is string && incoming().image.size() <= 10485760))
+          && (!('notes' in incoming()) || (incoming().notes is string && incoming().notes.size() <= 1000));
+
+        allow delete: if isOwner(uid);
+      }
+
+      // Generated Outfits: users/{uid}/outfits/{outfitId}
+      match /outfits/{outfitId} {
+        allow get, list: if isOwner(uid);
+        allow create, update: if isOwner(uid)
+          && (incoming().occasion is string && incoming().occasion.size() <= 100)
+          && (incoming().style is string && incoming().style.size() <= 100);
+        allow delete: if isOwner(uid);
+      }
+
+      // Saved Outfits: users/{uid}/savedOutfits/{outfitId}
+      match /savedOutfits/{outfitId} {
+        allow get, list: if isOwner(uid);
+        allow create, update: if isOwner(uid)
+          && (incoming().occasion is string && incoming().occasion.size() <= 100);
+        allow delete: if isOwner(uid);
+      }
+
+      // User Preferences: users/{uid}/preferences/{docId}
+      match /preferences/{docId} {
+        allow get, list: if isOwner(uid);
+        allow create, update: if isOwner(uid);
+        allow delete: if isOwner(uid);
+      }
+    }
+  }
+}

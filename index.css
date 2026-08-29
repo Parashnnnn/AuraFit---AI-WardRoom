@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-display: 'Syne', sans-serif;
+    --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-primary, #FAF8F5);
+    color: var(--text-primary, #1C1B1F);
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+/* 1. DEFAULT THEME: AuraFit's original warm off-white / cream editorial */
+:root,
+.theme-default {
+  --bg-primary: #FAF8F5;
+  --bg-secondary: #F3EFEA;
+  --bg-card: #FFFFFF;
+  --bg-card-subtle: #F8F5F0;
+  --bg-card-hover: #FAF7F2;
+  --border-color: #E8E2D9;
+  --border-subtle: #F0EAE1;
+  --text-primary: #1C1B1F;
+  --text-secondary: #5E5B66;
+  --text-muted: #8E8A96;
+  --accent-lavender: #8B5CF6;
+  --accent-soft: #E8DEFC;
+  --accent-pink: #F472B6;
+  --accent-blue: #818CF8;
+}
+
+/* 2. LIGHT THEME: Bright crisp white / ivory interface with dark text */
+.theme-light {
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F8F9FA;
+  --bg-card: #FFFFFF;
+  --bg-card-subtle: #F1F3F5;
+  --bg-card-hover: #F8F9FA;
+  --border-color: #E5E7EB;
+  --border-subtle: #F3F4F6;
+  --text-primary: #111827;
+  --text-secondary: #4B5563;
+  --text-muted: #9CA3AF;
+  --accent-lavender: #7C3AED;
+  --accent-soft: #EDE9FE;
+  --accent-pink: #EC4899;
+  --accent-blue: #6366F1;
+}
+
+/* 3. DARK THEME: Deep charcoal / near-black with glowing lavender/pink accents */
+.theme-dark {
+  --bg-primary: #0E0D12;
+  --bg-secondary: #16151E;
+  --bg-card: #1A1924;
+  --bg-card-subtle: #14131B;
+  --bg-card-hover: #232130;
+  --border-color: #2D2A3B;
+  --border-subtle: #242230;
+  --text-primary: #F7F6F9;
+  --text-secondary: #B4B0C2;
+  --text-muted: #757088;
+  --accent-lavender: #A78BFA;
+  --accent-soft: #312749;
+  --accent-pink: #F472B6;
+  --accent-blue: #93C5FD;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(140, 130, 160, 0.25);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(140, 130, 160, 0.45);
+}
+
+/* Custom glow utilities */
+.aura-glow {
+  box-shadow: 0 0 40px -10px rgba(139, 92, 246, 0.18);
+}
+
+.aura-glow-dark {
+  box-shadow: 0 0 50px -10px rgba(167, 139, 250, 0.15);
+}
+
+

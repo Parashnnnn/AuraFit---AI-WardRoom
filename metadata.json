@@ -1,0 +1,6 @@
+{
+  "name": "AuraFit",
+  "description": "Your Closet's Best Friend. AI-powered personal stylist that creates personalized outfits from clothes you already own.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
